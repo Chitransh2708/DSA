@@ -1,9 +1,7 @@
 class Solution {
     public boolean isValid(String s) {
-        boolean b = true;
-        if(s.length()<=1 ){
-            return false;
-        }
+        
+        
 
         Stack<Character> st = new Stack<>();
         for(int i =0;i<=s.length()-1;i++){
@@ -14,41 +12,30 @@ class Solution {
             else if(c == '{' || c=='[' || c=='('){
                 st.push(c);
             }
-            else if(c == ')'){
-                if(st.peek() == '('){
-                    st.pop();
-                }
-                else{
+            else{ 
+                  if (st.empty()) {
                     return false;
-                }
-                
-            }
-            else if(c == '}'){
-                if(st.peek() == '{'){
-                    st.pop();
-                }
-                else{
-                    return false;
-                }
-                
-            }
-            else if(c == ']'){
-                if(st.peek() == '['){
-                    st.pop();
                 }
 
-                else{
+                if (c == ')' && st.peek() != '(') {
                     return false;
                 }
-                
+                if (c == '}' && st.peek() != '{') {
+                    return false;
+                }
+                if (c == ']' && st.peek() != '[') {
+                    return false;
+                }
+
+                st.pop();
             }
+                
         }
-        if(st.empty()){
-            return true;
-        }
-        else{
-            return false;
-        }
+        
+        
+
+
+        return st.empty();
 
 
         
