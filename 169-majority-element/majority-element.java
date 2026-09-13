@@ -1,22 +1,20 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        Arrays.sort(nums);
-        int left = 0;
-        int bestMax =0;
-        int k =0;
-        for(int right =0;right<=nums.length-1;right++){
-            if(nums[right] == nums[left]){
-                if(right-left+1>=bestMax){
-                    bestMax = right-left+1;
-                    k = nums[right];
-                }
+        int candidate = 0;
+        int count = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
             }
-            else{
-                left = right;
+
+            if (num == candidate) {
+                count++;
+            } else {
+                count--;
             }
         }
 
-        return k;
-        
+        return candidate;
     }
 }
